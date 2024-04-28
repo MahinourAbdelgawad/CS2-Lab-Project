@@ -16,7 +16,7 @@ public:
 	Graph() {} //constructor
 
 	//change return type and parameters according to what u need
-	void AddCity();
+	void AddCity(const string& citysrc, const string& citydest = "", float distance = 0.0);
 	void DeleteCity(string city); //done but untested
 	void FindShortestDis();
 	void UpdateGraph();
