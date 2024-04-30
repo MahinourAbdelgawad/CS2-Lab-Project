@@ -14,12 +14,24 @@ class Graph
 public:
 
 	Graph() {} //constructor
+	//Graph() {} //we need a parameterized constructor to load graph from a file
+
+	//Edge to be used in finding shortest distance function
+	struct Edge
+	{
+		string destination;
+		int weight;
+	};
+
 
 	//change return type and parameters according to what u need
-	void AddCity(const string& citysrc, const string& citydest = "", float distance = 0.0);
+	void AddCity(const string& city); //untested
+	void AddEdge(const string& citysrc, const string& citydest, float distance); //untested
 	void DeleteCity(string city); //done but untested
-	void FindShortestDis();
+	int FindShortestDis(vector<vector<Edge>>& graph, string& source, string& destination);
 	void UpdateGraph();
+
+	bool cityExists(const string& city);
 
 
 };
