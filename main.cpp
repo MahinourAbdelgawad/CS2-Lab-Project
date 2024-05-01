@@ -1,21 +1,16 @@
 #include "Graph.h"
-#include <iostream>
-#include <string>
-using namespace std;
 
 bool stringTest(string); //function to validate string input
 
 int main()
 {
+
+	Graph graph;
+	graph.loadGraph("Cities.txt"); //initializes graph with the data in the text file
+
 	int choice;
 	string cityName, cityName2;
 	float distance;
-
-
-	//call function to load and read file
-	//create graph from data in the file
-
-	Graph graph; //just for testing
 
 	cout << "--------------MINI WASALNY APPLICATION--------------" << endl << endl;
 
@@ -124,3 +119,4 @@ bool stringTest(string name) //function to validate string input
 	}
 	return true;
 }
+

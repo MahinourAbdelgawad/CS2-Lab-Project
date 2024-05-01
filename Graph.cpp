@@ -1,5 +1,4 @@
 #include "Graph.h"
-#include <queue>
 
 
 void Graph::AddCity(const string& city) //adds a city
@@ -83,8 +82,36 @@ int Graph::FindShortestDis(vector<vector<Edge>>& graph, string& location, string
 
 }
 
+
+void Graph::loadGraph(string filename)
+{
+	ifstream file(filename);
+	if (!file.is_open()) {
+		cerr << "Error opening file!" << endl;
+	}
+
+	string line;
+	while (getline(file, line)) {
+		istringstream iss(line);
+		string city1, city2, distanceString;
+		iss >> city1 >> city2 >> distanceString;
+
+		if (!cityExists(city1)) //if city is not already in the graph, add it
+			AddCity(city1);
+
+        if (!city2.empty()) //if city2 is an empty string then city1 has no neighbors and no edges
+        {
+            if (!cityExists(city2)) //if city 2 is not already in the graph, add it
+                AddCity(city2);
+
+            float distance = stoi(distanceString);
+            AddEdge(city1, city2, distance); //connect city1 and city2
+        }
+
+	}
+}
+
 bool Graph::cityExists(const string& city) //needed for the delete city function and add edge
 {
     return (adjList.find(city) != adjList.end()); //returns true if city exists/ false if it does not
 }
-
