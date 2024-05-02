@@ -112,7 +112,7 @@ void Graph::loadGraph(string filename)
 }
 void Graph:: WriteToFile(const string& filename)
 {
-	ofstream outFile(filename, ios::app); // Open the file in append mode
+	ofstream outFile(filename, ios::out); // Open the file in append mode
 		if (!outFile.is_open()) {
 			cerr << "Error opening file!" << endl;
 			return;
