@@ -110,7 +110,7 @@ void Graph::loadGraph(string filename)
 
 	}
 }
-void Graph::void WriteToFile(const string& filename)
+void Graph:: WriteToFile(const string& filename)
 {
 	ofstream outFile(filename, ios::app); // Open the file in append mode
 		if (!outFile.is_open()) {
@@ -135,4 +135,14 @@ void Graph::void WriteToFile(const string& filename)
 bool Graph::cityExists(const string& city) //needed for the delete city function and add edge
 {
     return (adjList.find(city) != adjList.end()); //returns true if city exists/ false if it does not
+}
+void Graph:: DisplayGraphData()
+{
+		for (const auto& city : this->adjList)
+		{
+			cout << city.first << endl;
+			for (const auto& edge : city.second) {
+				cout << "  -> " << edge.first << " (distance: " << edge.second << ")" << endl;
+			}
+		}
 }
