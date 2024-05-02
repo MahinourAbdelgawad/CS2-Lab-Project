@@ -87,7 +87,15 @@ int main()
 			break;
 		case(5): //delete
 		{
-
+			cout << "Please enter the city you want to remove: ";
+			cin.ignore();
+			getline(cin, cityName);
+			if(graph.cityExists(cityName){
+				cout << cityName << "has been removed from the graph";
+			}
+			else {
+				cout << cityName << "is not found on the graph. Check the spelling of the city";
+			}
 		}
 			break;
 		case(6): //find shortest
