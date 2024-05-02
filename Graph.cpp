@@ -4,6 +4,7 @@
 void Graph::AddCity(const string& city) //adds a city
 {
         adjList.insert({ city, vector<pair<string, float>>() });
+
 }
 
 void Graph::AddEdge(const string& citysrc, const string& citydest, float distance) //adds edge between two cities
@@ -33,7 +34,7 @@ void Graph::DeleteCity(string city)
 			}
 		}
 
-		edges = newEdges; //replacing old edges vector with the new one
+		it.second = newEdges; //replacing old edges vector with the new one
 	}
 }
 
@@ -82,6 +83,18 @@ int Graph::FindShortestDis(vector<vector<Edge>>& graph, string& location, string
 
 }
 
+void Graph::DisplayGraphData()
+{
+	for (const auto& city : adjList)
+	{
+		cout << city.first << endl;
+		for (const auto& edge : city.second) {
+			cout << "  -> " << edge.first << " (distance: " << edge.second << ")" << endl;
+		}
+	}
+
+	cout << endl;
+}
 
 void Graph::loadGraph(string filename)
 {
@@ -104,45 +117,59 @@ void Graph::loadGraph(string filename)
             if (!cityExists(city2)) //if city 2 is not already in the graph, add it
                 AddCity(city2);
 
-            float distance = stoi(distanceString);
-            AddEdge(city1, city2, distance); //connect city1 and city2
+            float distance = stof(distanceString);
+			if (!edgeExists(city1, city2, distance))
+				AddEdge(city1, city2, distance); //connect city1 and city2
         }
 
 	}
 }
-void Graph:: WriteToFile(const string& filename)
+
+void Graph::WriteToFile(const string& filename)
 {
-	ofstream outFile(filename, ios::out); // Open the file in append mode
-		if (!outFile.is_open()) {
-			cerr << "Error opening file!" << endl;
-			return;
-		}
+	ofstream outFile(filename, ios::out); // Open the file in out mode
+	if (!outFile.is_open()) {
+		cerr << "Error opening file!" << endl;
+		return;
+	}
 
-		// Check if the file is not empty and we're appending new data
-		if (outFile.tellp() != 0) {
-			// File is not empty, add a new line before writing
-			outFile << endl;
-		}
+	// Check if the file is not empty and we're appending new data
+	if (outFile.tellp() != 0) {
+		// File is not empty, add a new line before writing
+		outFile << endl;
+	}
 
-		for (const auto& city : adjList) {
+	for (const auto& city : adjList) {
+		if (city.second.empty()){
+			outFile << city.first << " " << " " << endl;
+		}
+		else
 			for (const auto& edge : city.second) {
 				outFile << city.first << " " << edge.first << " " << edge.second << endl;
 			}
-		}
+	}
 
-		outFile.close();
+	outFile.close();
 }
+
+
+
 bool Graph::cityExists(const string& city) //needed for the delete city function and add edge
 {
     return (adjList.find(city) != adjList.end()); //returns true if city exists/ false if it does not
 }
-void Graph:: DisplayGraphData()
+
+bool Graph::edgeExists(const string& city, const string& city2, float distance)
 {
-		for (const auto& city : this->adjList)
-		{
-			cout << city.first << endl;
-			for (const auto& edge : city.second) {
-				cout << "  -> " << edge.first << " (distance: " << edge.second << ")" << endl;
-			}
-		}
+	for (const auto& edges : adjList[city])
+	{
+		if (edges.first == city2 && edges.second == distance)
+			return true;
+	}
+	return false;
+}
+
+int Graph::count() //returns number of cities available
+{
+	return adjList.size();
 }

@@ -34,10 +34,12 @@ public:
 	void DeleteCity(string city); //done but untested
 	int FindShortestDis(vector<vector<Edge>>& graph, string& source, string& destination);
 	void UpdateGraph();
+	void DisplayGraphData();
 	void loadGraph(string filename);
 	void WriteToFile(const string& filename);
-	void DisplayGraphData();
 	bool cityExists(const string& city);
+	bool edgeExists(const string& city, const string& city2, float distance);
+	int count();
 
 
 };
