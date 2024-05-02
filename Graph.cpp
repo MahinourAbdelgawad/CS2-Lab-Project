@@ -110,7 +110,28 @@ void Graph::loadGraph(string filename)
 
 	}
 }
+void Graph::void WriteToFile(const string& filename)
+{
+	ofstream outFile(filename, ios::app); // Open the file in append mode
+		if (!outFile.is_open()) {
+			cerr << "Error opening file!" << endl;
+			return;
+		}
 
+		// Check if the file is not empty and we're appending new data
+		if (outFile.tellp() != 0) {
+			// File is not empty, add a new line before writing
+			outFile << endl;
+		}
+
+		for (const auto& city : adjList) {
+			for (const auto& edge : city.second) {
+				outFile << city.first << " " << edge.first << " " << edge.second << endl;
+			}
+		}
+
+		outFile.close();
+}
 bool Graph::cityExists(const string& city) //needed for the delete city function and add edge
 {
     return (adjList.find(city) != adjList.end()); //returns true if city exists/ false if it does not
