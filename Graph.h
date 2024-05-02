@@ -35,7 +35,7 @@ public:
 	int FindShortestDis(vector<vector<Edge>>& graph, string& source, string& destination);
 	void UpdateGraph();
 	void loadGraph(string filename);
-
+	void WriteToFile(const string& filename);
 	bool cityExists(const string& city);
 
 
