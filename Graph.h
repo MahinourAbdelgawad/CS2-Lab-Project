@@ -36,6 +36,7 @@ public:
 	void UpdateGraph();
 	void loadGraph(string filename);
 	void WriteToFile(const string& filename);
+	void DisplayGraphData();
 	bool cityExists(const string& city);
 
 
