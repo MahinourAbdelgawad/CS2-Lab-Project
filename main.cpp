@@ -157,7 +157,25 @@ int main()
 
 			case(6): //find shortest
 			{
+				if(graph.count < 2){
+					cout<< "There aren't enough cities to perform this action." << endl;
+					break;
+				}
+				
+				string srcCity, destCity;
+				cout << "Enter the starting city: ";
+				cin.ignore();
+				getline(cin, srcCity);
 
+				cout << "Enter the destination city: ";
+				cin.ignore();
+				getline(cin,destCity);
+
+				int shortestDistance = graph.FindShortestDis(graph, srcCity, destCity);
+
+				cout << "The Shortest Distance between " << srcCity << " and " << destCity << " is " << shortestDistance << " km."; 
+
+				
 			}
 			break;
 
