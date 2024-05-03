@@ -15,7 +15,7 @@ void Graph::AddEdge(const string& citysrc, const string& citydest, float distanc
 }
 
 
-void Graph::DeleteCity(string city)
+void Graph::DeleteCity(const string& city)
 {
 	adjList.erase(city); //removing city from the adjacency list
 
@@ -82,6 +82,17 @@ int Graph::FindShortestDis(vector<vector<Edge>>& graph, string& location, string
     return distance[vertexIndex[destination]];
 
 }
+
+
+void Graph::UpdateGraph(const string& city1, const string& city2, float distance)
+{
+
+}
+void Graph::UpdateGraph(const string& city1, const string& city2) //first one updates weight of path, this one deletes path
+{
+
+}
+
 
 void Graph::DisplayGraphData()
 {
@@ -159,7 +170,7 @@ bool Graph::cityExists(const string& city) //needed for the delete city function
     return (adjList.find(city) != adjList.end()); //returns true if city exists/ false if it does not
 }
 
-bool Graph::edgeExists(const string& city, const string& city2, float distance)
+bool Graph::edgeExists(const string& city, const string& city2, float distance) //checks for path AND its weight
 {
 	for (const auto& edges : adjList[city])
 	{
@@ -167,6 +178,17 @@ bool Graph::edgeExists(const string& city, const string& city2, float distance)
 			return true;
 	}
 	return false;
+}
+
+bool Graph::edgeExists(const string& city, const string& city2) //checks for existence of path only
+{
+	for (const auto& edges : adjList[city])
+	{
+		if (edges.first == city2)
+			return true;
+	}
+	return false;
+
 }
 
 int Graph::count() //returns number of cities available

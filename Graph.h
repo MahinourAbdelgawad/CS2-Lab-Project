@@ -29,16 +29,23 @@ public:
 
 
 	//change return type and parameters according to what u need
-	void AddCity(const string& city); //untested
-	void AddEdge(const string& citysrc, const string& citydest, float distance); //untested
-	void DeleteCity(string city); //done but untested
+	void AddCity(const string& city);
+	void AddEdge(const string& citysrc, const string& citydest, float distance); 
+
+	void DeleteCity(const string& city); 
+
 	int FindShortestDis(vector<vector<Edge>>& graph, string& source, string& destination);
-	void UpdateGraph();
+
+	void UpdateGraph(const string& city1, const string& city2, float distance);
+	void UpdateGraph(const string& city1, const string& city2); //first one updates weight of path, this one deletes path
+
 	void DisplayGraphData();
 	void loadGraph(string filename);
 	void WriteToFile(const string& filename);
+
 	bool cityExists(const string& city);
 	bool edgeExists(const string& city, const string& city2, float distance);
+	bool edgeExists(const string& city, const string& city2);
 	int count();
 
 

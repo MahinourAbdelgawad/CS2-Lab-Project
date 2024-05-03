@@ -1,5 +1,6 @@
 #include "Graph.h"
 #include <limits>
+
 bool stringTest(string); //function to validate string input
 
 int main()
@@ -87,7 +88,7 @@ int main()
 				getline(cin, cityName);
 				while (!graph.cityExists(cityName))
 				{
-					cout << "City not found in the graph. Please try again" << endl;
+					cout << cityName << " not found in the graph.Please try again" << endl;
 					getline(cin, cityName);
 				}
 
@@ -100,7 +101,7 @@ int main()
 				}
 				while (!graph.cityExists(cityName2))
 				{
-					cout << "City not found in the graph. Please try again" << endl;
+					cout << cityName2 << " not found in the graph. Please try again" << endl;
 					getline(cin, cityName2);
 				}
 
@@ -136,7 +137,61 @@ int main()
 
 			case(4): //update
 			{
+				if (graph.count() < 2) //if there are less than 2 cities, then no paths exist
+				{
+					cout << "No paths exist in the graph." << endl << endl;
+					break;
+				}
+				cout << "Please enter the first city:" << endl;
+				cin.ignore();
+				getline(cin, cityName);
+				while (!graph.cityExists(cityName))
+				{
+					cout << cityName << " not found in the graph. Please try again" << endl;
+					getline(cin, cityName);
+				}
 
+				getline(cin, cityName2);
+				while (cityName == cityName2)
+				{
+					cout << "The two cities cannot be the same. Please try again" << endl;
+					getline(cin, cityName2);
+				}
+				while (!graph.cityExists(cityName2))
+				{
+					cout << cityName2 << " not found in the graph. Please try again" << endl;
+					getline(cin, cityName2);
+				}
+
+				if (!graph.edgeExists(cityName, cityName2))
+				{
+					cout << "There is no existing path between " << cityName << " and " << cityName2 << ". Perhaps try adding a path instead of updating" << endl << endl;
+					break;
+				}
+
+				cout << "Please enter the new distance between " << cityName << " and " << cityName2 << ". To delete the path between them, please enter 0" << endl;
+				while (cin.fail() || distance < 0) //to make sure distance is not negative or non-numeric
+				{
+
+					if (cin.fail())
+					{
+						cout << "Invalid input! Please try again" << endl;
+						cin.clear(); //if input is not a number
+						cin.ignore(INT_MAX, '\n');
+					}
+
+					else
+						cout << "Distance cannot negative! Please try again" << endl;
+
+					cin >> distance;
+				}
+
+				if (distance == 0) //delete the path
+					graph.UpdateGraph(cityName, cityName2);
+				else
+					graph.UpdateGraph(cityName, cityName2, distance);
+
+				cout << "Path between " << cityName << " and " << cityName2 << " updated successfully!" << endl << endl;
 			}
 			break;
 
@@ -157,11 +212,11 @@ int main()
 
 			case(6): //find shortest
 			{
-				if(graph.count < 2){
-					cout<< "There aren't enough cities to perform this action." << endl;
+				if (graph.count() < 2) {
+					cout << "There aren't enough cities to perform this action." << endl;
 					break;
 				}
-				
+
 				string srcCity, destCity;
 				cout << "Enter the starting city: ";
 				cin.ignore();
@@ -169,13 +224,11 @@ int main()
 
 				cout << "Enter the destination city: ";
 				cin.ignore();
-				getline(cin,destCity);
+				getline(cin, destCity);
 
 				int shortestDistance = graph.FindShortestDis(graph, srcCity, destCity);
 
-				cout << "The Shortest Distance between " << srcCity << " and " << destCity << " is " << shortestDistance << " km."; 
-
-				
+				cout << "The Shortest Distance between " << srcCity << " and " << destCity << " is " << shortestDistance << " km.";
 			}
 			break;
 
@@ -200,4 +253,6 @@ bool stringTest(string name) //function to validate string input
 	}
 	return true;
 }
+
+
 
