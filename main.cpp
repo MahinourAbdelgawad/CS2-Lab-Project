@@ -1,5 +1,4 @@
 #include "Graph.h"
-#include <limits>
 
 bool stringTest(string); //function to validate string input
 
@@ -8,10 +7,10 @@ int main()
 	Graph graph;
 	graph.loadGraph("Cities.txt"); //initializes graph with the data in the text file
 
-	int choice; 
-	string cityName, cityName2;
-	float distance;
-	bool cont = true;
+    int choice;
+    string cityName, cityName2;
+    float distance;
+    bool cont = true;
 
 	cout << "--------------MINI WASALNY APPLICATION--------------" << endl << endl;
 
@@ -181,7 +180,7 @@ int main()
 					}
 
 					else
-						cout << "Distance cannot negative! Please try again" << endl;
+						cout << "Distance cannot be negative! Please try again" << endl;
 
 					cin >> distance;
 				}
@@ -217,18 +216,39 @@ int main()
 					break;
 				}
 
-				string srcCity, destCity;
 				cout << "Enter the starting city: ";
 				cin.ignore();
-				getline(cin, srcCity);
+				getline(cin, cityName);
+				while (!graph.cityExists(cityName))
+				{
+					cout << cityName << " not found in the graph. Please try again" << endl;
+					getline(cin, cityName);
+				}
 
 				cout << "Enter the destination city: ";
-				cin.ignore();
-				getline(cin, destCity);
+				getline(cin, cityName2);
+				while (!graph.cityExists(cityName))
+				{
+					cout << cityName << " not found in the graph. Please try again" << endl;
+					getline(cin, cityName);
+				}
 
-				int shortestDistance = graph.FindShortestDis(graph, srcCity, destCity);
+				pair<vector<string>, float> path = graph.FindShortestDis(cityName, cityName2);
 
-				cout << "The Shortest Distance between " << srcCity << " and " << destCity << " is " << shortestDistance << " km.";
+				if (path.second == -1)
+				{
+					cout << "No paths exist between " << cityName << " and " << cityName2 << " :( " << endl << endl;
+					break;
+				}
+
+				cout << "The Shortest Distance between " << cityName << " and " << cityName2 << " is " << path.second << " km." << endl
+					<< "Below is the path you need to take: " << endl;
+				//cout << cityName << " --> ";
+				for (const auto& city : path.first)
+				{
+					cout << city << " --> ";
+				}
+				cout << cityName2 << endl << endl;
 			}
 			break;
 
@@ -253,6 +273,3 @@ bool stringTest(string name) //function to validate string input
 	}
 	return true;
 }
-
-
-
