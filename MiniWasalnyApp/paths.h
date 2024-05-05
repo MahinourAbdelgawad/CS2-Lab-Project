@@ -18,6 +18,14 @@ public:
 private slots:
     void on_back_clicked();
 
+    void on_addpath_clicked();
+
+    void on_modifypath_clicked();
+
+    void on_deletepath_clicked();
+
+    void on_cancel_clicked();
+
 private:
     Ui::Paths *ui;
 };

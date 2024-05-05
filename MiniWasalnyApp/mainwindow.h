@@ -22,6 +22,8 @@ private slots:
 
     void on_start_clicked();
 
+    void on_quit_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

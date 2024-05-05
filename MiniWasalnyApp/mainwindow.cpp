@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->errorlabel->setVisible(false);
 
 }
 
@@ -25,9 +26,21 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_start_clicked()
 {
-    this->hide();
-    welcomePage* welcome = new welcomePage(this);
-    welcome->setName(ui->Name->text());
-    welcome->setVisible(true);
+    if (ui->Name->text().isEmpty())
+        ui->errorlabel->setVisible(true);
+    else
+    {
+        this->hide();
+        welcomePage* welcome = new welcomePage(this);
+        welcome->setName(ui->Name->text());
+        welcome->show();
+    }
+}
+
+
+void MainWindow::on_quit_clicked()
+{
+    QApplication::quit();
+
 }
 

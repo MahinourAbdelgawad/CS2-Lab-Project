@@ -21,6 +21,8 @@ welcomePage::~welcomePage()
 void welcomePage::setName(QString name)
 {
     ui->name->setText(name);
+    ui->name->adjustSize();
+    ui->name->setFixedHeight(51);
 }
 
 void welcomePage::on_cities_clicked()

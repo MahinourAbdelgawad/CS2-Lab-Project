@@ -7,6 +7,7 @@ Navigate::Navigate(QWidget *parent)
     , ui(new Ui::Navigate)
 {
     ui->setupUi(this);
+    ui->errorlabel->setVisible(false);
 }
 
 Navigate::~Navigate()

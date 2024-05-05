@@ -6,147 +6,261 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>483</height>
+    <width>814</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(48, 50, 52);
+</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>191</width>
-     <height>41</height>
+     <x>0</x>
+     <y>40</y>
+     <width>814</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Arial</family>
-     <pointsize>40</pointsize>
+     <family>Georgia</family>
+     <pointsize>28</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(128, 162, 146);</string>
    </property>
    <property name="text">
     <string>Navigation</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="back">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>30</y>
-     <width>100</width>
+     <x>649</x>
+     <y>540</y>
+     <width>141</width>
      <height>32</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Arial</family>
-     <pointsize>18</pointsize>
+     <family>Georgia</family>
+     <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(128, 162, 146);</string>
+   </property>
    <property name="text">
-    <string>Go back</string>
+    <string>Back to Menu</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>90</y>
-     <width>501</width>
+     <x>220</x>
+     <y>190</y>
+     <width>391</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Arial</family>
-     <pointsize>36</pointsize>
+     <family>Georgia</family>
+     <pointsize>18</pointsize>
+     <italic>true</italic>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(128, 162, 146);</string>
+   </property>
    <property name="text">
-    <string>The shortest distance between </string>
+    <string>Find the shortest path between:</string>
    </property>
-  </widget>
-  <widget class="QLineEdit" name="location">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>160</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="destination">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>160</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>160</y>
+     <x>380</x>
+     <y>260</y>
      <width>71</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Arial</family>
-     <pointsize>36</pointsize>
+     <family>Georgia</family>
+     <pointsize>18</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(128, 162, 146);</string>
    </property>
    <property name="text">
     <string>and</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QComboBox" name="source">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>270</y>
-     <width>71</width>
-     <height>31</height>
+     <x>220</x>
+     <y>260</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>36</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>is</string>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(83, 86, 86);
+color: rgb(255, 255, 255);</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QComboBox" name="destination">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>270</y>
+     <x>500</x>
+     <y>260</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(83, 86, 86);
+color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>530</y>
      <width>161</width>
-     <height>31</height>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(68, 71, 71);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_2">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>160</y>
+     <width>501</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(68, 71, 71);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="go">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>410</y>
+     <width>141</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Arial</family>
-     <pointsize>36</pointsize>
+     <family>Georgia</family>
+     <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(128, 162, 146);</string>
+   </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Go!</string>
    </property>
   </widget>
+  <widget class="QFrame" name="frame_3">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>400</y>
+     <width>161</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(68, 71, 71);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="errorlabel">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>370</y>
+     <width>231</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Georgia</family>
+     <pointsize>11</pointsize>
+     <italic>true</italic>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>Please select two cities above</string>
+   </property>
+  </widget>
+  <zorder>frame_3</zorder>
+  <zorder>frame_2</zorder>
+  <zorder>frame</zorder>
+  <zorder>label</zorder>
+  <zorder>back</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>source</zorder>
+  <zorder>destination</zorder>
+  <zorder>go</zorder>
+  <zorder>errorlabel</zorder>
  </widget>
  <resources/>
  <connections/>
