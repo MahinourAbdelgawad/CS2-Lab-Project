@@ -80,10 +80,21 @@ void Cities::on_cancel_clicked()
 
 void Cities::on_delete1_clicked()
 {
-    //remove city that was selected in the combo box from the graph
-    //remove the city from the combo box
-}
+    if (ui->nameEdit->text().isEmpty())
+        ui->errorlabel->setVisible(true);
+    else
+    {
+        QString cityname = ui->nameEdit->text();
 
+        if(citylist.contains(cityname)){
+            citylist.removeAll(cityname);
+            ui->comboBox->removeItem(ui->comboBox->findText(cityname));
+            graph.DeleteCity(cityname.toStdString());
+            saveList();
+        }
+    }
+
+}
 
 void Cities::on_add_clicked()
 {
@@ -93,13 +104,14 @@ void Cities::on_add_clicked()
     {
         QString cityname = ui->nameEdit->text();
 
-    //     if(!citylist.contains(cityname)){
-    //         citylist.append(cityname);
-    //         ui->comboBox->addItem(cityname);
-    //     }
+        if(!citylist.contains(cityname)){
+            citylist.append(cityname);
+            ui->comboBox->addItem(cityname);
+            graph.AddCity(cityname.toStdString());
+            saveList();
+        }
     }
 
-    //add the city to the graph
 }
 
 // void Cities::saveList(){
