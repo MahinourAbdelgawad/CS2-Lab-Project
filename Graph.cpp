@@ -3,14 +3,14 @@
 
 void Graph::AddCity(const string& city) //adds a city
 {
-        adjList.insert({ city, vector<pair<string, float>>() });
+	adjList.insert({ city, vector<pair<string, float>>() });
 
 }
 
 void Graph::AddEdge(const string& citysrc, const string& citydest, float distance) //adds edge between two cities
 {
-    adjList[citysrc].push_back({ citydest, distance });
-    adjList[citydest].push_back({ citysrc, distance });
+	adjList[citysrc].push_back({ citydest, distance });
+	adjList[citydest].push_back({ citysrc, distance });
 
 }
 
@@ -28,7 +28,7 @@ void Graph::DeleteCity(const string& city)
 
 		for (int i = 0; i < edges.size(); i++) //iterating over the vector
 		{
-			if (edges.at(i).first != city) 
+			if (edges.at(i).first != city)
 			{
 				newEdges.push_back(edges.at(i));
 			}
@@ -176,9 +176,52 @@ vector<string> Graph::findPath(unordered_map<string, string> previous, const str
 void Graph::UpdateGraph(const string& city1, const string& city2, float distance)
 {
 
+	// Find and update the edge with the new distance
+	//bool updated = false;
+	for (auto& edge : adjList[city1]) {
+		if (edge.first == city2) {
+			edge.second = distance;
+			//updated = true;
+			break;
+		}
+	}
+
+
+
+	// update reverse direction 
+	//updated = false;
+	for (auto& edge : adjList[city2]) {
+		if (edge.first == city1) {
+			edge.second = distance;
+			//updated = true;
+			break;
+		}
+	}
+
+
+
 }
 void Graph::UpdateGraph(const string& city1, const string& city2) //first one updates weight of path, this one deletes path
 {
+	//delete path from city1 to city2
+	vector<pair<string, float>>& edges1 = adjList[city1];
+	vector<pair<string, float>> deletededges1;
+	for (const auto& edge : edges1) {
+		if (edge.first != city2) {
+			deletededges1.push_back(edge);
+		}
+	}
+	edges1 = deletededges1;
+
+	//delete path from city2 to city1
+	vector<pair<string, float>>& edges2 = adjList[city2];
+	vector<pair<string, float>> deletededges2;
+	for (const auto& edge : edges2) {
+		if (edge.first != city1) {
+			deletededges2.push_back(edge);
+		}
+	}
+	edges2 = deletededges2;
 
 }
 
@@ -212,15 +255,15 @@ void Graph::loadGraph(string filename)
 		if (!cityExists(city1)) //if city is not already in the graph, add it
 			AddCity(city1);
 
-        if (!city2.empty()) //if city2 is an empty string then city1 has no neighbors and no edges
-        {
-            if (!cityExists(city2)) //if city 2 is not already in the graph, add it
-                AddCity(city2);
+		if (!city2.empty()) //if city2 is an empty string then city1 has no neighbors and no edges
+		{
+			if (!cityExists(city2)) //if city 2 is not already in the graph, add it
+				AddCity(city2);
 
-            float distance = stof(distanceString);
+			float distance = stof(distanceString);
 			if (!edgeExists(city1, city2, distance))
 				AddEdge(city1, city2, distance); //connect city1 and city2
-        }
+		}
 
 	}
 }
@@ -240,7 +283,7 @@ void Graph::WriteToFile(const string& filename)
 	}
 
 	for (const auto& city : adjList) {
-		if (city.second.empty()){
+		if (city.second.empty()) {
 			outFile << city.first << " " << " " << endl;
 		}
 		else
@@ -256,7 +299,7 @@ void Graph::WriteToFile(const string& filename)
 
 bool Graph::cityExists(const string& city) //needed for the delete city function and add edge
 {
-    return (adjList.find(city) != adjList.end()); //returns true if city exists/ false if it does not
+	return (adjList.find(city) != adjList.end()); //returns true if city exists/ false if it does not
 }
 
 bool Graph::edgeExists(const string& city, const string& city2, float distance) //checks for path AND its weight
@@ -284,7 +327,3 @@ int Graph::count() //returns number of cities available
 {
 	return adjList.size();
 }
-
-
-
-
