@@ -4,46 +4,49 @@
 #include <QString>
 #include <unordered_map>
 #include <vector>
-#include <fstream>
-#include <sstream>
-#include <iostream>
+#include <QFile>
+#include <QTextStream>
+// #include <fstream>
+// #include <sstream>
 #include <queue>
 #include <stack>
 #include <limits>
+#include <QMessageBox>
 using namespace std;
 
 class Graph
 {
-    unordered_map<string, vector<pair<string, float>>> adjList;
 
-    vector<string> findPath(unordered_map<string, string> previous, const string& location, const string& destination);
+
+    vector<QString> findPath(unordered_map<QString, QString> previous, QString location, QString destination);
 public:
     Graph();
+    unordered_map<QString, vector<pair<QString, float>>> adjList;
 
-    struct Edge
-    {
-        string destination;
-        int weight;
-    };
+    // struct Edge
+    // {
+    //     QString destination;
+    //     int weight;
+    // };
 
-    void AddCity(const string& city);
-    void AddEdge(const string& citysrc, const string& citydest, float distance);
+    void AddCity(QString city);
+    void AddEdge(QString citysrc, QString citydest, float distance);
 
-    void DeleteCity(const string& city);
+    void DeleteCity(QString city);
 
-    pair<vector<string>, float> FindShortestDis(const string& location, const string& destination);
+    pair<vector<QString>, float> FindShortestDis(QString location, QString destination);
 
 
-    void UpdateGraph(const string& city1, const string& city2, float distance);
-    void removeEdge(const string& city1, const string& city2);
+    void UpdateGraph(QString city1, QString city2, float distance);
+    void removeEdge(QString city1, QString city2);
 
-    void DisplayGraphData();
-    void loadGraph(string filename);
-    void WriteToFile(const string& filename);
+    // void DisplayGraphData();
+    void loadGraph(QString filename);
+    void WriteToFile(QString& filename);
 
-    bool cityExists(const string& city);
-    bool edgeExists(const string& city, const string& city2, float distance);
-    bool edgeExists(const string& city, const string& city2);
+    bool cityExists(QString city);
+    bool edgeExists(QString city, QString city2, float distance);
+    bool edgeExists(QString city, QString city2);
     int count();
 
 };

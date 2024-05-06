@@ -119,7 +119,7 @@ background-color: rgb(128, 162, 146);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QComboBox" name="source">
+  <widget class="QComboBox" name="sourcebox">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -133,7 +133,7 @@ background-color: rgb(128, 162, 146);</string>
 color: rgb(255, 255, 255);</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="destination">
+  <widget class="QComboBox" name="destinationbox">
    <property name="geometry">
     <rect>
      <x>500</x>
@@ -257,8 +257,8 @@ background-color: rgb(128, 162, 146);</string>
   <zorder>back</zorder>
   <zorder>label_2</zorder>
   <zorder>label_3</zorder>
-  <zorder>source</zorder>
-  <zorder>destination</zorder>
+  <zorder>sourcebox</zorder>
+  <zorder>destinationbox</zorder>
   <zorder>go</zorder>
   <zorder>errorlabel</zorder>
  </widget>

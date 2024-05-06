@@ -2,13 +2,13 @@
 
 Graph::Graph() {}
 
-void Graph::AddCity(const string& city) //adds a city
+void Graph::AddCity(QString city) //adds a city
 {
-    adjList.insert({ city, vector<pair<string, float>>() });
+    adjList.insert({ city, vector<pair<QString, float>>() });
 
 }
 
-void Graph::AddEdge(const string& citysrc, const string& citydest, float distance) //adds edge between two cities
+void Graph::AddEdge(QString citysrc, QString citydest, float distance) //adds edge between two cities
 {
     adjList[citysrc].push_back({ citydest, distance });
     adjList[citydest].push_back({ citysrc, distance });
@@ -16,7 +16,7 @@ void Graph::AddEdge(const string& citysrc, const string& citydest, float distanc
 }
 
 
-void Graph::DeleteCity(const string& city)
+void Graph::DeleteCity(QString city)
 {
     adjList.erase(city); //removing city from the adjacency list
 
@@ -25,7 +25,7 @@ void Graph::DeleteCity(const string& city)
     {
         auto edges = it.second; //vector of the edges
 
-        vector<pair<string, float>> newEdges; //vector for storing edges after removal
+        vector<pair<QString, float>> newEdges; //vector for storing edges after removal
 
         for (int i = 0; i < edges.size(); i++) //iterating over the vector
         {
@@ -40,19 +40,18 @@ void Graph::DeleteCity(const string& city)
 }
 
 
-vector<string> Graph::findPath(unordered_map<string, string> previous, const string& location, const string& destination) //helper function for find shortest dist, returns a vector with the cities in the path
+vector<QString> Graph::findPath(unordered_map<QString, QString> previous, QString location, QString destination) //helper function for find shortest dist, returns a vector with the cities in the path
 {
-    stack<string> cityStack;
-    string current = destination;
+    stack<QString> cityStack;
+    QString current = destination;
 
     while (current != location)
     {
-        cout << "in here" << endl;
         current = previous[current];
         cityStack.push(current);
     }
 
-    vector<string> path;
+    vector<QString> path;
 
     while (!cityStack.empty())
     {
@@ -64,13 +63,13 @@ vector<string> Graph::findPath(unordered_map<string, string> previous, const str
 
 }
 
-pair<vector<string>, float> Graph::FindShortestDis(const string& location, const string& destination)
+pair<vector<QString>, float> Graph::FindShortestDis(QString location, QString destination)
 {
     if (adjList[location].empty()) //if city has no neighbors, then there is no path and no need to continue the function
-        return make_pair(vector<string>(), -1); //returns empty vector and -1
+        return make_pair(vector<QString>(), -1); //returns empty vector and -1
 
-    unordered_map<string, float> distances;
-    unordered_map<string, string> previousCities;
+    unordered_map<QString, float> distances;
+    unordered_map<QString, QString> previousCities;
 
     for (const auto& city : adjList)
     {
@@ -79,18 +78,18 @@ pair<vector<string>, float> Graph::FindShortestDis(const string& location, const
 
     distances[location] = 0;
 
-    queue<string> q;
+    queue<QString> q;
     q.push(location);
 
     while (!q.empty())
     {
 
-        string u = q.front();
+        QString u = q.front();
         q.pop();
 
         for (const auto& neighbors : adjList[u])
         {
-            string v = neighbors.first;
+            QString v = neighbors.first;
             float distance = neighbors.second;
 
             if (distances[u] + distance < distances[v])
@@ -105,14 +104,14 @@ pair<vector<string>, float> Graph::FindShortestDis(const string& location, const
 
 
     if (distances[destination] == INT_MAX) //no path exists
-        return make_pair(vector<string>(), -1); //returns an empty vector and -1 as the distance
+        return make_pair(vector<QString>(), -1); //returns an empty vector and -1 as the distance
 
     return make_pair(findPath(previousCities, location, destination), distances[destination]); //findPath creates a vector out of the previousCities map. distances[destination] returns the shortest distance to the destination
 
 }
 
 
-void Graph::UpdateGraph(const string& city1, const string& city2, float distance)
+void Graph::UpdateGraph(QString city1, QString city2, float distance)
 {
     for (auto& edge : adjList[city1]) {
         if (edge.first == city2) {
@@ -133,10 +132,10 @@ void Graph::UpdateGraph(const string& city1, const string& city2, float distance
 
 }
 
-void Graph::removeEdge(const string& city1, const string& city2)
+void Graph::removeEdge(QString city1, QString city2)
 {
     //delete path from city1 to city2
-    vector<pair<string, float>> deletededges1;
+    vector<pair<QString, float>> deletededges1;
     for (const auto& edge : adjList[city1]) {
         if (edge.first != city2) {
             deletededges1.push_back(edge);
@@ -145,7 +144,7 @@ void Graph::removeEdge(const string& city1, const string& city2)
     adjList[city1] = deletededges1;
 
     //delete path from city2 to city1
-    vector<pair<string, float>> deletededges2;
+    vector<pair<QString, float>> deletededges2;
     for (const auto& edge : adjList[city2]) {
         if (edge.first != city1) {
             deletededges2.push_back(edge);
@@ -156,41 +155,50 @@ void Graph::removeEdge(const string& city1, const string& city2)
 }
 
 
-void Graph::DisplayGraphData()
+// void Graph::DisplayGraphData()
+// {
+//     for (const auto& city : adjList)
+//     {
+//         cout << city.first << endl;
+//         for (const auto& edge : city.second) {
+//             cout << "  -> " << edge.first << " (distance: " << edge.second << ")" << endl;
+//         }
+//     }
+
+//     cout << endl;
+// }
+
+void Graph::loadGraph(QString filename)
 {
-    for (const auto& city : adjList)
-    {
-        cout << city.first << endl;
-        for (const auto& edge : city.second) {
-            cout << "  -> " << edge.first << " (distance: " << edge.second << ")" << endl;
-        }
+    QFile file(filename);
+
+    // ifstream file(filename);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        // QMessageBox::information(this, "Error", "Failed to open file: " + filename);
+        qDebug()<< "cant open file";
+        return;
     }
 
-    cout << endl;
-}
+    QTextStream input(&file);
+    QString line;
 
-void Graph::loadGraph(string filename)
-{
-    ifstream file(filename);
-    if (!file.is_open()) {
-        cerr << "Error opening file!" << endl;
-    }
-
-    string line;
-    while (getline(file, line)) {
-        istringstream iss(line);
-        string city1, city2, distanceString;
-        iss >> city1 >> city2 >> distanceString;
+    while (!input.atEnd()) {
+        // istringstream iss(line);
+        line = input.readLine();
+        QStringList iss = line.split(" ");
+        QString city1 = iss[0];
+        QString city2 = iss[1];
+        QString distanceString = iss[2];
 
         if (!cityExists(city1)) //if city is not already in the graph, add it
             AddCity(city1);
 
-        if (!city2.empty()) //if city2 is an empty string then city1 has no neighbors and no edges
+        if (!city2.isEmpty()) //if city2 is an empty string then city1 has no neighbors and no edges
         {
             if (!cityExists(city2)) //if city 2 is not already in the graph, add it
                 AddCity(city2);
 
-            float distance = stof(distanceString);
+            float distance = distanceString.toFloat();
             if (!edgeExists(city1, city2, distance))
                 AddEdge(city1, city2, distance); //connect city1 and city2
         }
@@ -198,27 +206,31 @@ void Graph::loadGraph(string filename)
     }
 }
 
-void Graph::WriteToFile(const string& filename)
+void Graph::WriteToFile(QString& filename)
 {
-    ofstream outFile(filename, ios::out); // Open the file in out mode
-    if (!outFile.is_open()) {
-        cerr << "Error opening file!" << endl;
+    QFile outFile(filename);
+    // ofstream outFile(filename, ios::out); // Open the file in out mode
+    if (!outFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        // QMessageBox::information(this, "Error", "Failed to open file: " + filename);
+        qDebug() << "cant open file";
         return;
     }
 
-    // Check if the file is not empty and we're appending new data
-    if (outFile.tellp() != 0) {
-        // File is not empty, add a new line before writing
-        outFile << endl;
-    }
+    QTextStream output(&outFile);
+
+    // // Check if the file is not empty and we're appending new data
+    // if (outFile.tellp() != 0) {
+    //     // File is not empty, add a new line before writing
+    //     outFile << endl;
+    // }
 
     for (const auto& city : adjList) {
         if (city.second.empty()) {
-            outFile << city.first << " " << " " << endl;
+            output << city.first << " " << " " << endl;
         }
         else
             for (const auto& edge : city.second) {
-                outFile << city.first << " " << edge.first << " " << edge.second << endl;
+                output << city.first << " " << edge.first << " " << edge.second << endl;
             }
     }
 
@@ -227,12 +239,12 @@ void Graph::WriteToFile(const string& filename)
 
 
 
-bool Graph::cityExists(const string& city) //needed for the delete city function and add edge
+bool Graph::cityExists(QString city) //needed for the delete city function and add edge
 {
     return (adjList.find(city) != adjList.end()); //returns true if city exists/ false if it does not
 }
 
-bool Graph::edgeExists(const string& city, const string& city2, float distance) //checks for path AND its weight
+bool Graph::edgeExists(QString city, QString city2, float distance) //checks for path AND its weight
 {
     for (const auto& edges : adjList[city])
     {
@@ -242,7 +254,7 @@ bool Graph::edgeExists(const string& city, const string& city2, float distance) 
     return false;
 }
 
-bool Graph::edgeExists(const string& city, const string& city2) //checks for existence of path only
+bool Graph::edgeExists(QString city, QString city2) //checks for existence of path only
 {
     for (const auto& edges : adjList[city])
     {

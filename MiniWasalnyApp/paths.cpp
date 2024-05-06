@@ -1,6 +1,7 @@
 #include "paths.h"
 #include "ui_paths.h"
 #include "welcomepage.h"
+#include "graphitem.h"
 
 Paths::Paths(QWidget *parent)
     : QDialog(parent)
@@ -10,6 +11,17 @@ Paths::Paths(QWidget *parent)
     ui->frame->hide();
     ui->errorlabel->setVisible(false);
     ui->errorlabel_2->setVisible(false);
+
+    for (const auto& cities : graph.adjList)
+    {
+        ui->sourcebox->addItem(cities.first);
+    }
+
+    for (const auto& cities : graph.adjList)
+    {
+        ui->destbox->addItem(cities.first);
+    }
+
 }
 
 Paths::~Paths()

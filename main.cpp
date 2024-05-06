@@ -5,7 +5,7 @@ bool stringTest(string); //function to validate string input
 int main()
 {
 	Graph graph;
-	graph.loadGraph("Cities.txt"); //initializes graph with the data in the text file
+	graph.loadGraph("../MiniWasalnyApp/Cities.txt"); //initializes graph with the data in the text file
 
     int choice;
     string cityName, cityName2;

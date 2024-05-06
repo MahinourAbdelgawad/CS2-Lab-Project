@@ -174,6 +174,7 @@ void Graph::loadGraph(string filename)
 	ifstream file(filename);
 	if (!file.is_open()) {
 		cerr << "Error opening file!" << endl;
+		exit(1);
 	}
 
 	string line;

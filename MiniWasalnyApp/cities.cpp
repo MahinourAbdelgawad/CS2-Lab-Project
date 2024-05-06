@@ -1,6 +1,7 @@
 #include "cities.h"
 #include "ui_cities.h"
 #include "welcomepage.h"
+#include "graphitem.h"
 
 Cities::Cities(QWidget *parent)
     : QDialog(parent)
@@ -11,7 +12,12 @@ Cities::Cities(QWidget *parent)
     ui->errorlabel->setVisible(false);
     ui->errorlabel_2->setVisible(false);
 
-    loadList();
+    // loadList();
+
+    for (const auto& cities : graph.adjList)
+    {
+        ui->comboBox->addItem(cities.first);
+    }
 }
 
 Cities::~Cities()
@@ -74,7 +80,8 @@ void Cities::on_cancel_clicked()
 
 void Cities::on_delete1_clicked()
 {
-
+    //remove city that was selected in the combo box from the graph
+    //remove the city from the combo box
 }
 
 
@@ -86,40 +93,41 @@ void Cities::on_add_clicked()
     {
         QString cityname = ui->nameEdit->text();
 
-        if(!citylist.contains(cityname)){
-            citylist.append(cityname);
-            ui->comboBox->addItem(cityname);
-        }
+    //     if(!citylist.contains(cityname)){
+    //         citylist.append(cityname);
+    //         ui->comboBox->addItem(cityname);
+    //     }
     }
 
+    //add the city to the graph
 }
 
-void Cities::saveList(){
-    QFile file("citylist.txt");
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        QTextStream out(&file);
-        for (const QString &city : citylist)
-        {
-            out << city << Qt::endl;
-        }
-        file.close();
-    }
-}
+// void Cities::saveList(){
+//     QFile file("citylist.txt");
+//     if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+//     {
+//         QTextStream out(&file);
+//         for (const QString &city : citylist)
+//         {
+//             out << city << Qt::endl;
+//         }
+//         file.close();
+//     }
+// }
 
 
-void Cities::loadList(){
+// void Cities::loadList(){
 
-    QFile file("citylist.txt");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        QTextStream in(&file);
-        while (!in.atEnd())
-        {
-            QString city = in.readLine();
-            citylist.append(city);
-            ui->comboBox->addItem(city); // Add city to combo box
-        }
-        file.close();
-    }
-}
+//     QFile file("citylist.txt");
+//     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+//     {
+//         QTextStream in(&file);
+//         while (!in.atEnd())
+//         {
+//             QString city = in.readLine();
+//             citylist.append(city);
+//             ui->comboBox->addItem(city); //Add city to combo box
+//         }
+//         file.close();
+//     }
+// }

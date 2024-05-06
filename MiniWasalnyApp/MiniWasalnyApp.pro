@@ -10,6 +10,8 @@ CONFIG += c++17
 
 SOURCES += \
     cities.cpp \
+    graph.cpp \
+    graphitem.cpp \
     instructions.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -19,6 +21,8 @@ SOURCES += \
 
 HEADERS += \
     cities.h \
+    graph.h \
+    graphitem.h \
     instructions.h \
     mainwindow.h \
     navigate.h \
@@ -37,3 +41,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    files.qrc
