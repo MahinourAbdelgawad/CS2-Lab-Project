@@ -224,15 +224,15 @@ void Graph::WriteToFile(QString& filename)
     //     outFile << endl;
     // }
 
-    for (const auto& city : adjList) {
-        if (city.second.empty()) {
-            output << city.first << " " << " " << endl;
-        }
-        else
-            for (const auto& edge : city.second) {
-                output << city.first << " " << edge.first << " " << edge.second << endl;
-            }
-    }
+    // for (const auto& city : adjList) {
+    //     if (city.second.empty()) {
+    //         output << city.first << " " << " " << endl;
+    //     }
+    //     else
+    //         for (const auto& edge : city.second) {
+    //             output << city.first << " " << edge.first << " " << edge.second << endl;
+    //         }
+    // }
 
     outFile.close();
 }

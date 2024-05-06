@@ -84,16 +84,19 @@ void Cities::on_delete1_clicked()
         ui->errorlabel->setVisible(true);
     else
     {
-        QString cityname = ui->nameEdit->text();
+        // QString cityname = ui->nameEdit->text();
 
-        if(citylist.contains(cityname)){
-            citylist.removeAll(cityname);
-            ui->comboBox->removeItem(ui->comboBox->findText(cityname));
-            graph.DeleteCity(cityname.toStdString());
-            saveList();
-        }
+        QString cityname = ui->comboBox->currentText(); //gets selected city from combo box
+        graph.DeleteCity(cityname); //deletes city from graph
+        ui->comboBox->removeItem(ui->comboBox->findText(cityname)); //deletes city from combo box
+
+        // if(citylist.contains(cityname)){
+        //     citylist.removeAll(cityname);
+        //     ui->comboBox->removeItem(ui->comboBox->findText(cityname));
+        //     graph.DeleteCity(cityname.toStdString());
+        //     saveList();
+        // }
     }
-
 }
 
 void Cities::on_add_clicked()
@@ -104,12 +107,25 @@ void Cities::on_add_clicked()
     {
         QString cityname = ui->nameEdit->text();
 
-        if(!citylist.contains(cityname)){
-            citylist.append(cityname);
-            ui->comboBox->addItem(cityname);
-            graph.AddCity(cityname.toStdString());
-            saveList();
+        if (graph.cityExists(cityname))
+        {
+            //make new error label for city exists
+            //set the error label as true
+            //clear the nameEdit
         }
+        else
+        {
+            graph.AddCity(cityname); //add city to graph
+            ui->comboBox->addItem(cityname); //add city to combo box
+        }
+
+
+        // if(!citylist.contains(cityname)){
+        //     citylist.append(cityname);
+        //     ui->comboBox->addItem(cityname);
+        //     graph.AddCity(cityname.toStdString());
+        //     saveList();
+        // }
     }
 
 }
