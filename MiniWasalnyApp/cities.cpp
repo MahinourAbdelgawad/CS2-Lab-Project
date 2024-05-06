@@ -10,6 +10,8 @@ Cities::Cities(QWidget *parent)
     ui->frame->hide();
     ui->errorlabel->setVisible(false);
     ui->errorlabel_2->setVisible(false);
+
+    loadList();
 }
 
 Cities::~Cities()
@@ -72,9 +74,7 @@ void Cities::on_cancel_clicked()
 
 void Cities::on_delete1_clicked()
 {
-    //if combo box is empty, set errorlabel_2 as visible
-    //else
-    //do stuff
+
 }
 
 
@@ -84,9 +84,42 @@ void Cities::on_add_clicked()
         ui->errorlabel->setVisible(true);
     else
     {
-        //do stuff
+        QString cityname = ui->nameEdit->text();
+
+        if(!citylist.contains(cityname)){
+            citylist.append(cityname);
+            ui->comboBox->addItem(cityname);
+        }
     }
 
 }
 
+void Cities::saveList(){
+    QFile file("citylist.txt");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QTextStream out(&file);
+        for (const QString &city : citylist)
+        {
+            out << city << Qt::endl;
+        }
+        file.close();
+    }
+}
 
+
+void Cities::loadList(){
+
+    QFile file("citylist.txt");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream in(&file);
+        while (!in.atEnd())
+        {
+            QString city = in.readLine();
+            citylist.append(city);
+            ui->comboBox->addItem(city); // Add city to combo box
+        }
+        file.close();
+    }
+}
