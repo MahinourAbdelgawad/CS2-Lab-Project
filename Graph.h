@@ -36,15 +36,13 @@ public:
 
 	void DeleteCity(const string& city);
 
-	//void ReadGraphFromFile(const string& filename, vector<vector<Edge>>& graph);
-	//int FindShortestDis(vector<vector<Edge>>& graph, string& source, string& destination);
 
 	pair<vector<string>, float> FindShortestDis(const string& location, const string& destination);
 
 
 
 	void UpdateGraph(const string& city1, const string& city2, float distance);
-	void removeEdge(const string& city1, const string& city2); 
+	void removeEdge(const string& city1, const string& city2);
 
 	void DisplayGraphData();
 	void loadGraph(string filename);
@@ -57,6 +55,5 @@ public:
 
 
 };
-
 
 

@@ -39,28 +39,6 @@ void Graph::DeleteCity(const string& city)
 }
 
 
-//void Graph::ReadGraphFromFile(const string& filename, vector<vector<Edge>>& graph)
-//{
-//    ifstream infile(filename);
-//    if (!infile) {
-//        cerr << "Error: Unable to open file " << filename << endl;
-//        return;
-//    }
-//
-//    string line;
-//    while (getline(infile, line))
-//    {
-//        istringstream iss(line);
-//        string source, destination;
-//        int weight;
-//        iss >> source >> destination >> weight;
-//
-//        // Add the edge to the graph
-//        graph.push_back({ {destination, weight} });
-//    }
-//
-//    infile.close();
-//}
 
 pair<vector<string>, float> Graph::FindShortestDis(const string& location, const string& destination)
 {
@@ -134,77 +112,30 @@ vector<string> Graph::findPath(unordered_map<string, string> previous, const str
 }
 
 
-//int Graph::FindShortestDis(vector<vector<Edge>>& graph, string& location, string& destination)
-//{
-//	unordered_map<string, int> vertexIndex;
-//	long numCities = graph.size();
-//
-//	for (int i = 0; i < numCities; ++i)
-//	{
-//		vertexIndex[graph[i][0].destination] = i;
-//	}
-//
-//	vector<int> distance(numCities, INT_MAX);
-//	distance[vertexIndex[location]] = 0;
-//
-//	queue<int> q;
-//	q.push(vertexIndex[location]);
-//
-//	while (!q.empty())
-//	{
-//		int u = q.front();
-//		q.pop();
-//
-//		for (int i = 0; i < graph[u].size(); ++i)
-//		{
-//			Edge& edge = graph[u][i];
-//			int v = vertexIndex[edge.destination];
-//			int weight = edge.weight;
-//
-//			if (distance[u] + weight < distance[v])
-//			{
-//				distance[v] = distance[u] + weight;
-//				q.push(v);
-//			}
-//		}
-//	}
-//
-//	return distance[vertexIndex[destination]];
-//
-//}
-
 void Graph::UpdateGraph(const string& city1, const string& city2, float distance)
 {
-
-
-	
 	for (auto& edge : adjList[city1]) {
 		if (edge.first == city2) {
 			edge.second = distance;
-			
+
 			break;
 		}
 	}
 
-
-
 	// update reverse direction 
-	
 	for (auto& edge : adjList[city2]) {
 		if (edge.first == city1) {
 			edge.second = distance;
-			
+
 			break;
 		}
 	}
 
-
-
 }
-void Graph::removeEdge(const string& city1, const string& city2) 
+
+void Graph::removeEdge(const string& city1, const string& city2)
 {
 	//delete path from city1 to city2
-	//vector<pair<string, float>>& edges1 = adjList[city1];
 	vector<pair<string, float>> deletededges1;
 	for (const auto& edge : adjList[city1]) {
 		if (edge.first != city2) {
@@ -214,7 +145,6 @@ void Graph::removeEdge(const string& city1, const string& city2)
 	adjList[city1] = deletededges1;
 
 	//delete path from city2 to city1
-	//vector<pair<string, float>>& edges2 = adjList[city2];
 	vector<pair<string, float>> deletededges2;
 	for (const auto& edge : adjList[city2]) {
 		if (edge.first != city1) {
