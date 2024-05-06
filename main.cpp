@@ -151,7 +151,7 @@ int main()
 			}
 
 			cout << "Please enter the second city:" << endl;
-			cin.ignore();
+			//cin.ignore();
 			getline(cin, cityName2);
 			while (cityName == cityName2)
 			{
@@ -189,7 +189,7 @@ int main()
 			}
 
 			if (distance == 0) //delete the path
-				graph.UpdateGraph(cityName, cityName2);
+				graph.removeEdge(cityName, cityName2);
 			else
 				graph.UpdateGraph(cityName, cityName2, distance);
 

@@ -176,12 +176,12 @@ vector<string> Graph::findPath(unordered_map<string, string> previous, const str
 void Graph::UpdateGraph(const string& city1, const string& city2, float distance)
 {
 
-	// Find and update the edge with the new distance
-	//bool updated = false;
+
+	
 	for (auto& edge : adjList[city1]) {
 		if (edge.first == city2) {
 			edge.second = distance;
-			//updated = true;
+			
 			break;
 		}
 	}
@@ -189,11 +189,11 @@ void Graph::UpdateGraph(const string& city1, const string& city2, float distance
 
 
 	// update reverse direction 
-	//updated = false;
+	
 	for (auto& edge : adjList[city2]) {
 		if (edge.first == city1) {
 			edge.second = distance;
-			//updated = true;
+			
 			break;
 		}
 	}
@@ -201,27 +201,27 @@ void Graph::UpdateGraph(const string& city1, const string& city2, float distance
 
 
 }
-void Graph::UpdateGraph(const string& city1, const string& city2) //first one updates weight of path, this one deletes path
+void Graph::removeEdge(const string& city1, const string& city2) 
 {
 	//delete path from city1 to city2
-	vector<pair<string, float>>& edges1 = adjList[city1];
+	//vector<pair<string, float>>& edges1 = adjList[city1];
 	vector<pair<string, float>> deletededges1;
-	for (const auto& edge : edges1) {
+	for (const auto& edge : adjList[city1]) {
 		if (edge.first != city2) {
 			deletededges1.push_back(edge);
 		}
 	}
-	edges1 = deletededges1;
+	adjList[city1] = deletededges1;
 
 	//delete path from city2 to city1
-	vector<pair<string, float>>& edges2 = adjList[city2];
+	//vector<pair<string, float>>& edges2 = adjList[city2];
 	vector<pair<string, float>> deletededges2;
-	for (const auto& edge : edges2) {
+	for (const auto& edge : adjList[city2]) {
 		if (edge.first != city1) {
 			deletededges2.push_back(edge);
 		}
 	}
-	edges2 = deletededges2;
+	adjList[city2] = deletededges2;
 
 }
 

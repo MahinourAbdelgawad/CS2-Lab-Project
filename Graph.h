@@ -44,7 +44,7 @@ public:
 
 
 	void UpdateGraph(const string& city1, const string& city2, float distance);
-	void UpdateGraph(const string& city1, const string& city2); //first one updates weight of path, this one deletes path
+	void removeEdge(const string& city1, const string& city2); 
 
 	void DisplayGraphData();
 	void loadGraph(string filename);
