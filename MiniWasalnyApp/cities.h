@@ -15,6 +15,9 @@ public:
     explicit Cities(QWidget *parent = nullptr);
     ~Cities();
 
+    void loadList();
+    void saveList();
+
 private slots:
     void on_back_clicked();
 
