@@ -26,6 +26,12 @@ private slots:
 
     void on_cancel_clicked();
 
+    void on_delete1_clicked();
+
+    void on_add_clicked();
+
+    void on_modify_clicked();
+
 private:
     Ui::Paths *ui;
 };

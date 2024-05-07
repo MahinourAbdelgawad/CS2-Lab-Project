@@ -3,6 +3,7 @@
 #include "welcomepage.h"
 #include "graphitem.h"
 
+
 Paths::Paths(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Paths)
@@ -104,5 +105,51 @@ void Paths::on_cancel_clicked()
     ui->errorlabel->setVisible(false);
     ui->errorlabel_2->setVisible(false);
 
+}
+void Paths::on_delete1_clicked()
+{
+    QString city1 = ui->sourcebox->currentText();
+    QString city2 = ui->destbox->currentText();
+    graph.removeEdge(city1,city2);
+    QMessageBox::information(this, "Success","Path removed successfully between " + city1 + " and " + city2 + ".");
+
+}
+
+
+void Paths::on_add_clicked()
+{
+    QString city1 = ui->sourcebox->currentText();
+    QString city2 = ui->destbox->currentText();
+    QString distance = ui->distedit->text();
+    bool yes=true;
+    float distance_float= distance.toFloat(&yes);
+
+    if (ui->distedit->text().isEmpty())
+        ui->errorlabel->setVisible(true);
+    else
+    {
+        graph.AddEdge(city1,city2,distance_float);
+        QMessageBox::information(this, "Success", "Distance " + distance+ " km added successfully between " + city1 + " and " + city2 + ".");
+    }
+
+}
+
+
+void Paths::on_modify_clicked()
+{
+    QString city1 = ui->sourcebox->currentText();
+    QString city2 = ui->destbox->currentText();
+    QString distance = ui->distedit->text();
+    bool yes=true;
+    float distance_float= distance.toFloat(&yes);
+
+    if (ui->distedit->text().isEmpty())
+        ui->errorlabel->setVisible(true);
+    else
+    {
+         graph.UpdateGraph(city1,city2,distance_float);
+        QMessageBox::information(this, "Success", "Distance updated successfully between " + city1 + " and " + city2 + " to " + distance +".");
+
+    }
 }
 
