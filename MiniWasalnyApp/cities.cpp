@@ -9,10 +9,7 @@ Cities::Cities(QWidget *parent)
 {
     ui->setupUi(this);
     ui->frame->hide();
-    ui->errorlabel->setVisible(false);
-    ui->errorlabel_2->setVisible(false);
-
-    // loadList();
+    ui->status->setVisible(false);
 
     for (const auto& cities : graph.adjList)
     {
@@ -72,90 +69,56 @@ void Cities::on_cancel_clicked()
     ui->addcity->setEnabled(true);
     ui->deletecity->setEnabled(true);
     ui->frame->hide();
-    ui->errorlabel->setVisible(false);
-    ui->errorlabel_2->setVisible(false);
+    ui->status->setVisible(false);
 
 }
 
 
 void Cities::on_delete1_clicked()
 {
-    if (ui->nameEdit->text().isEmpty())
-        ui->errorlabel->setVisible(true);
+    if (ui->comboBox->currentText().isEmpty())
+    {
+        ui->status->setText("Please select a city above");
+        ui->status->setVisible(true);
+    }
     else
     {
-        // QString cityname = ui->nameEdit->text();
-
         QString cityname = ui->comboBox->currentText(); //gets selected city from combo box
         graph.DeleteCity(cityname); //deletes city from graph
         ui->comboBox->removeItem(ui->comboBox->findText(cityname)); //deletes city from combo box
-
-        // if(citylist.contains(cityname)){
-        //     citylist.removeAll(cityname);
-        //     ui->comboBox->removeItem(ui->comboBox->findText(cityname));
-        //     graph.DeleteCity(cityname.toStdString());
-        //     saveList();
-        // }
+        ui->comboBox->setCurrentIndex(0);
+        ui->status->setText(cityname + " deleted successfully");
+        ui->status->setVisible(true);
     }
 }
 
 void Cities::on_add_clicked()
 {
     if (ui->nameEdit->text().isEmpty())
-        ui->errorlabel->setVisible(true);
+    {
+        ui->status->setText("Please enter a city above");
+        ui->status->setVisible(true);
+    }
     else
     {
         QString cityname = ui->nameEdit->text();
 
         if (graph.cityExists(cityname))
         {
-            //make new error label for city exists
-            //set the error label as true
-            //clear the nameEdit
+            ui->status->setText(cityname + " already exists");
+            ui->status->setVisible(true);
+            ui->nameEdit->clear();
         }
         else
         {
             graph.AddCity(cityname); //add city to graph
             ui->comboBox->addItem(cityname); //add city to combo box
+            ui->status->setText(cityname + " added successfully");
+            ui->status->setVisible(true);
+            ui->nameEdit->clear();
         }
 
-
-        // if(!citylist.contains(cityname)){
-        //     citylist.append(cityname);
-        //     ui->comboBox->addItem(cityname);
-        //     graph.AddCity(cityname.toStdString());
-        //     saveList();
-        // }
     }
 
 }
 
-// void Cities::saveList(){
-//     QFile file("citylist.txt");
-//     if (file.open(QIODevice::WriteOnly | QIODevice::Text))
-//     {
-//         QTextStream out(&file);
-//         for (const QString &city : citylist)
-//         {
-//             out << city << Qt::endl;
-//         }
-//         file.close();
-//     }
-// }
-
-
-// void Cities::loadList(){
-
-//     QFile file("citylist.txt");
-//     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-//     {
-//         QTextStream in(&file);
-//         while (!in.atEnd())
-//         {
-//             QString city = in.readLine();
-//             citylist.append(city);
-//             ui->comboBox->addItem(city); //Add city to combo box
-//         }
-//         file.close();
-//     }
-// }

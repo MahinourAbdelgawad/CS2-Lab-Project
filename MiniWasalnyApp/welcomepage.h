@@ -13,7 +13,7 @@ class welcomePage : public QDialog
 
 public:
     explicit welcomePage(QWidget *parent = nullptr);
-    void setName(QString name);
+    // void setName(QString name);
     ~welcomePage();
 
 private slots:

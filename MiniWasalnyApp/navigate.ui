@@ -43,34 +43,11 @@ background-color: rgb(128, 162, 146);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="back">
-   <property name="geometry">
-    <rect>
-     <x>649</x>
-     <y>540</y>
-     <width>141</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Georgia</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(128, 162, 146);</string>
-   </property>
-   <property name="text">
-    <string>Back to Menu</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>190</y>
+     <y>160</y>
      <width>391</width>
      <height>41</height>
     </rect>
@@ -97,7 +74,7 @@ background-color: rgb(128, 162, 146);</string>
    <property name="geometry">
     <rect>
      <x>380</x>
-     <y>260</y>
+     <y>230</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -123,7 +100,7 @@ background-color: rgb(128, 162, 146);</string>
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>260</y>
+     <y>230</y>
      <width>101</width>
      <height>41</height>
     </rect>
@@ -137,7 +114,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>500</x>
-     <y>260</y>
+     <y>230</y>
      <width>101</width>
      <height>41</height>
     </rect>
@@ -150,10 +127,10 @@ color: rgb(255, 255, 255);</string>
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>530</y>
+     <x>470</x>
+     <y>360</y>
      <width>161</width>
-     <height>51</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -165,12 +142,35 @@ color: rgb(255, 255, 255);</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
+   <widget class="QPushButton" name="back">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Georgia</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(128, 162, 146);</string>
+    </property>
+    <property name="text">
+     <string>Back to Menu</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>160</y>
+     <y>130</y>
      <width>501</width>
      <height>181</height>
     </rect>
@@ -188,8 +188,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="go">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>410</y>
+     <x>220</x>
+     <y>370</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -211,8 +211,8 @@ background-color: rgb(128, 162, 146);</string>
   <widget class="QFrame" name="frame_3">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>400</y>
+     <x>210</x>
+     <y>360</y>
      <width>161</width>
      <height>61</height>
     </rect>
@@ -230,37 +230,165 @@ background-color: rgb(128, 162, 146);</string>
   <widget class="QLabel" name="errorlabel">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>370</y>
-     <width>231</width>
-     <height>21</height>
+     <x>290</x>
+     <y>320</y>
+     <width>301</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Georgia</family>
-     <pointsize>11</pointsize>
+     <pointsize>12</pointsize>
      <italic>true</italic>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 0, 0);</string>
+    <string notr="true">color: rgb(255, 0, 0);
+background-color: rgba(0,0,0,0%);</string>
    </property>
    <property name="text">
-    <string>Please select two cities above</string>
+    <string>Please select two different cities!</string>
    </property>
   </widget>
+  <widget class="QLabel" name="errorlabel_2">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>320</y>
+     <width>341</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Georgia</family>
+     <pointsize>12</pointsize>
+     <italic>true</italic>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 0, 0);
+background-color: rgba(0,0,0,0%);</string>
+   </property>
+   <property name="text">
+    <string>Please make sure you select two cities!</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="thePath">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>470</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Georgia</family>
+     <pointsize>14</pointsize>
+     <italic>true</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(0,0,0,0%);</string>
+   </property>
+   <property name="text">
+    <string>Here is the path you need to take:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="path">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>510</y>
+     <width>811</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Georgia</family>
+     <pointsize>14</pointsize>
+     <italic>true</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(0,0,0,0%);</string>
+   </property>
+   <property name="text">
+    <string>path</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>430</y>
+     <width>821</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(68, 71, 71);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="theShortest">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>801</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Georgia</family>
+      <pointsize>14</pointsize>
+      <italic>true</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(0,0,0,0%);</string>
+    </property>
+    <property name="text">
+     <string>The Shortest Distance between</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <zorder>frame_4</zorder>
   <zorder>frame_3</zorder>
   <zorder>frame_2</zorder>
   <zorder>frame</zorder>
   <zorder>label</zorder>
-  <zorder>back</zorder>
   <zorder>label_2</zorder>
   <zorder>label_3</zorder>
   <zorder>sourcebox</zorder>
   <zorder>destinationbox</zorder>
   <zorder>go</zorder>
   <zorder>errorlabel</zorder>
+  <zorder>errorlabel_2</zorder>
+  <zorder>thePath</zorder>
+  <zorder>path</zorder>
  </widget>
  <resources/>
  <connections/>

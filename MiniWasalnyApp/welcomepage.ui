@@ -16,64 +16,10 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(48, 50, 52);</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>120</y>
-     <width>121</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>18</pointsize>
-     <italic>true</italic>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(68, 71, 71);</string>
-   </property>
-   <property name="text">
-    <string>Welcome,</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="name">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>120</y>
-     <width>470</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-     <horstretch>1</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>18</pointsize>
-     <italic>false</italic>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(68, 71, 71);</string>
-   </property>
-   <property name="text">
-    <string>name</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="cities">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>310</x>
      <y>230</y>
      <width>191</width>
      <height>71</height>
@@ -96,7 +42,7 @@ background-color: rgb(128, 162, 146);</string>
   <widget class="QPushButton" name="paths">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>310</x>
      <y>340</y>
      <width>191</width>
      <height>71</height>
@@ -119,7 +65,7 @@ background-color: rgb(128, 162, 146);</string>
   <widget class="QPushButton" name="navigate">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>310</x>
      <y>450</y>
      <width>191</width>
      <height>71</height>
@@ -231,7 +177,7 @@ color: rgb(255, 255, 255);</string>
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>290</x>
      <y>199</y>
      <width>231</width>
      <height>351</height>
@@ -268,8 +214,6 @@ color: rgb(255, 255, 255);</string>
   </widget>
   <zorder>frame_2</zorder>
   <zorder>frame</zorder>
-  <zorder>label</zorder>
-  <zorder>name</zorder>
   <zorder>cities</zorder>
   <zorder>paths</zorder>
   <zorder>navigate</zorder>

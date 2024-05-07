@@ -254,6 +254,11 @@ background-color: rgb(128, 162, 146);</string>
      <string notr="true">background-color: rgb(83, 86, 86);
 color: rgb(255, 255, 255);</string>
     </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
    </widget>
    <widget class="QPushButton" name="delete1">
     <property name="geometry">
@@ -278,13 +283,13 @@ background-color: rgb(128, 162, 146);</string>
      <string>Delete</string>
     </property>
    </widget>
-   <widget class="QLabel" name="errorlabel">
+   <widget class="QLabel" name="status">
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>130</y>
-      <width>231</width>
-      <height>21</height>
+      <y>140</y>
+      <width>181</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="font">
@@ -298,30 +303,10 @@ background-color: rgb(128, 162, 146);</string>
      <string notr="true">color: rgb(255, 0, 0);</string>
     </property>
     <property name="text">
-     <string>Please enter city name above</string>
+     <string>TextLabel</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="errorlabel_2">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>130</y>
-      <width>231</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Georgia</family>
-      <pointsize>11</pointsize>
-      <italic>true</italic>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string>Please select a city above</string>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

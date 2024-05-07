@@ -23,12 +23,6 @@ public:
     Graph();
     unordered_map<QString, vector<pair<QString, float>>> adjList;
 
-    // struct Edge
-    // {
-    //     QString destination;
-    //     int weight;
-    // };
-
     void AddCity(QString city);
     void AddEdge(QString citysrc, QString citydest, float distance);
 
@@ -42,7 +36,7 @@ public:
 
     // void DisplayGraphData();
     void loadGraph(QString filename);
-    void WriteToFile(QString& filename);
+    void WriteToFile(const QString& filename);
 
     bool cityExists(QString city);
     bool edgeExists(QString city, QString city2, float distance);

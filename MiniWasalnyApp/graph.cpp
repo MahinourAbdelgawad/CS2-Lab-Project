@@ -173,7 +173,8 @@ void Graph::loadGraph(QString filename)
     QFile file(filename);
 
     // ifstream file(filename);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    if (!file.isOpen()) {
         // QMessageBox::information(this, "Error", "Failed to open file: " + filename);
         qDebug()<< "cant open file";
         return;
@@ -204,35 +205,44 @@ void Graph::loadGraph(QString filename)
         }
 
     }
+
+    file.close();
 }
 
-void Graph::WriteToFile(QString& filename)
+void Graph::WriteToFile(const QString& filename)
 {
     QFile outFile(filename);
-    // ofstream outFile(filename, ios::out); // Open the file in out mode
-    if (!outFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        // QMessageBox::information(this, "Error", "Failed to open file: " + filename);
-        qDebug() << "cant open file";
+
+    if (!outFile.setPermissions(QFile::WriteUser)) {
+        qDebug() << "Failed to set file permissions:" << outFile.errorString();
+        return;
+    }
+    outFile.open(QIODevice::WriteOnly);
+    if (!outFile.isOpen()) {
+        qDebug() << "cant open file" << outFile.errorString();
+        qDebug() << filename;
         return;
     }
 
     QTextStream output(&outFile);
 
-    // // Check if the file is not empty and we're appending new data
-    // if (outFile.tellp() != 0) {
-    //     // File is not empty, add a new line before writing
-    //     outFile << endl;
-    // }
+    for (const auto& city: adjList)
+    {
+        QString line;
+        if (city.second.empty())
+        {
+            line = city.first + " " + " " + "\n";
+        }
+        else
+        {
+            for (const auto& edge: city.second)
+            {
+                line += city.first + " " + edge.first + " " + QString::number(edge.second) + "\n";
+            }
+        }
 
-    // for (const auto& city : adjList) {
-    //     if (city.second.empty()) {
-    //         output << city.first << " " << " " << endl;
-    //     }
-    //     else
-    //         for (const auto& edge : city.second) {
-    //             output << city.first << " " << edge.first << " " << edge.second << endl;
-    //         }
-    // }
+        output << line;
+    }
 
     outFile.close();
 }

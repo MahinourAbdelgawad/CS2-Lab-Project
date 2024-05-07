@@ -14,7 +14,8 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(48, 50, 52);</string>
+   <string notr="true">background-color: rgb(48, 50, 52);
+color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -212,6 +213,11 @@ background-color: rgb(128, 162, 146);</string>
      <string notr="true">background-color: rgb(83, 86, 86);
 color: rgb(255, 255, 255);</string>
     </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
    </widget>
    <widget class="QComboBox" name="destbox">
     <property name="geometry">
@@ -222,28 +228,15 @@ color: rgb(255, 255, 255);</string>
       <height>24</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLabel" name="distlabel">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>70</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Georgia</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(83, 86, 86);
+color: rgb(255, 255, 255);</string>
     </property>
-    <property name="text">
-     <string>(distance)</string>
-    </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
    </widget>
    <widget class="QPushButton" name="add">
     <property name="geometry">

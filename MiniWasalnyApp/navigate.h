@@ -18,7 +18,10 @@ public:
 private slots:
     void on_back_clicked();
 
+    void on_go_clicked();
+
 private:
+    QString location, destination;
     Ui::Navigate *ui;
 };
 
