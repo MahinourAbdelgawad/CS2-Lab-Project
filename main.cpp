@@ -5,7 +5,7 @@ bool stringTest(string); //function to validate string input
 int main()
 {
 	Graph graph;
-	graph.loadGraph("../MiniWasalnyApp/Cities.txt"); //initializes graph with the data in the text file
+	graph.loadGraph("Cities.txt"); //initializes graph with the data in the text file
 
     int choice;
     string cityName, cityName2;
@@ -82,6 +82,7 @@ int main()
 					cout << "There is only one city. Cannot add edge. Please add another city before using this feature" << endl << endl;
 					break;
 				}
+
 				cout << "Please enter the first city" << endl;
 				cin.ignore();
 				getline(cin, cityName);
@@ -109,6 +110,7 @@ int main()
 					cout << "Path already exists! Perhaps trying updating the path instead" << endl << endl;
 					break;
 
+				}
 				cout << "Please enter the distance in kilometers between " << cityName << " and " << cityName2 << endl;
 				cin >> distance;
 				while (cin.fail() || distance <= 0) //to make sure distance is not zero or negative, nor non-numeric
@@ -127,7 +129,7 @@ int main()
 					cin >> distance;
 				}
 
-				}
+		
 				graph.AddEdge(cityName, cityName2, distance);
 
 				cout << "Direct path of " << distance << " kilometers between " << cityName << " and " << cityName2 << " added successfully!" << endl << endl;

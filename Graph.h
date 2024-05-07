@@ -25,12 +25,6 @@ public:
 
 	Graph() {} //constructor
 
-	struct Edge
-	{
-		string destination;
-		int weight;
-	};
-
 	void AddCity(const string& city);
 	void AddEdge(const string& citysrc, const string& citydest, float distance);
 

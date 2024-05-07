@@ -94,7 +94,6 @@ vector<string> Graph::findPath(unordered_map<string, string> previous, const str
 
 	while (current != location)
 	{
-		cout << "in here" << endl;
 		current = previous[current];
 		cityStack.push(current);
 	}
